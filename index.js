@@ -1,7 +1,12 @@
 var http = require('http');
 var port = Number(process.env.PORT || 8080);
 var fs = require("fs");
-var x  = fs.readFileSync('public/index.html');
+//var x  = fs.readFile('public/index.html');
+var x;
+fs.readFile('public/index.html', (err, data) => {
+  if (err) throw err;
+  x = data;
+});
 var requestListener = function (req, res){
 	res.writeHead(200, {"Content-type":"text/html"});
 	res.write(x);
